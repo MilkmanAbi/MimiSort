@@ -1,5 +1,5 @@
 /**
- * HYDRA-SORT v2.0 MAXIMUM OVERDRIVE
+ * HYDRA-SORT v2.0
  * 
  * The most aggressively optimized sorting system for RP2040
  * Target: 4x+ speedup over standard quicksort
