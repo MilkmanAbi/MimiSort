@@ -16,7 +16,7 @@ HYDRA-SORT is a multi-layered, adaptive sorting system specifically engineered f
 
 This project was developed collaboratively with Claude (Anthropic) as an exploration of algorithmic optimization on constrained embedded systems.
 
-> ⚠️ **Disclaimer:** This is a research and learning project. It prioritizes exploration and experimentation over production readiness. Use at your own discretion.
+> ⚠️ **Disclaimer:** This is a research and learning project. It prioritizes exploration and experimentation over production readiness. Use at your own discretion. It was built exclusively for the Picomimi project and a custom Dynamic Memory Allocator and Data Mapping system under the project.
 
 ---
 
