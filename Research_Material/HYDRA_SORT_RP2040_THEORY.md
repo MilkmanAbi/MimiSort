@@ -27,27 +27,27 @@
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│                      RP2040 ARCHITECTURE                            │
+│                      RP2040 ARCHITECTURE                           │
 ├────────────────────────────────────────────────────────────────────┤
 │  CORES:        2× ARM Cortex-M0+ @ 133MHz (stock)                  │
-│                Overclockable to 250-420MHz                          │
-│                                                                     │
+│                Overclockable to 250-420MHz                         │
+│                                                                    │
 │  MEMORY:       264KB SRAM (6 banks)                                │
 │                Bank 0-3: 64KB each (256KB striped)                 │
 │                Bank 4:   4KB (core 0 stack)                        │
 │                Bank 5:   4KB (core 1 stack)                        │
-│                                                                     │
+│                                                                    │
 │  BUS:          4× AHB-Lite crossbar (32-bit)                       │
 │                Single-cycle access if no contention                │
-│                                                                     │
+│                                                                    │
 │  DMA:          12 channels, 32-bit transfers                       │
-│                Can run parallel to CPU                              │
-│                                                                     │
+│                Can run parallel to CPU                             │
+│                                                                    │
 │  CACHE:        NONE (critical for algorithm design)                │
-│                                                                     │
+│                                                                    │
 │  FPU:          NONE (integer math only)                            │
-│                                                                     │
-│  POWER:        ~25mA @ 133MHz, ~100mA @ 250MHz (est.)             │
+│                                                                    │
+│  POWER:        ~25mA @ 133MHz, ~100mA @ 250MHz (est.)              │
 │                DORMANT: 0.8mA, SLEEP: 1.3mA                        │
 └────────────────────────────────────────────────────────────────────┘
 ```
@@ -169,36 +169,36 @@ Where $\hat{T}, \hat{E}, \hat{M}$ are normalized time, energy, and memory usage.
 
 ```
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║                           HYDRA-SORT ARCHITECTURE                          ║
+║                           HYDRA-SORT ARCHITECTURE                         ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
-║                                                                            ║
+║                                                                           ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 0: INPUT ANALYSIS ENGINE                                       │  ║
-║  │ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐            │  ║
-║  │ │ Size      │ │ Presort   │ │ Range     │ │ Entropy   │            │  ║
-║  │ │ Classifier│ │ Detector  │ │ Analyzer  │ │ Estimator │            │  ║
-║  │ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘            │  ║
+║  │ LAYER 0: INPUT ANALYSIS ENGINE                                      │  ║
+║  │ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐             │  ║
+║  │ │ Size      │ │ Presort   │ │ Range     │ │ Entropy   │             │  ║
+║  │ │ Classifier│ │ Detector  │ │ Analyzer  │ │ Estimator │             │  ║
+║  │ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘             │  ║
 ║  │       └─────────────┴─────────────┴─────────────┘                   │  ║
-║  │                            │                                         │  ║
-║  │                    Feature Vector F                                  │  ║
+║  │                            │                                        │  ║
+║  │                    Feature Vector F                                 │  ║
 ║  └────────────────────────────┼────────────────────────────────────────┘  ║
-║                               ▼                                            ║
+║                               ▼                                           ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 1: PARTITIONING STRATEGY                                       │  ║
-║  │                                                                       │  ║
-║  │   IF n > M_max: External Sort (Flash/SD)                             │  ║
-║  │   IF n > M_single: Multi-Block Partitioning                          │  ║
-║  │   ELSE: In-Memory Direct                                              │  ║
-║  │                                                                       │  ║
+║  │ LAYER 1: PARTITIONING STRATEGY                                      │  ║
+║  │                                                                     │  ║
+║  │   IF n > M_max: External Sort (Flash/SD)                            │  ║
+║  │   IF n > M_single: Multi-Block Partitioning                         │  ║
+║  │   ELSE: In-Memory Direct                                            │  ║
+║  │                                                                     │  ║
 ║  │   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐       │  ║
 ║  │   │ Block 0 │     │ Block 1 │     │ Block 2 │ ... │ Block k │       │  ║
 ║  │   └────┬────┘     └────┬────┘     └────┬────┘     └────┬────┘       │  ║
 ║  └────────┼───────────────┼───────────────┼───────────────┼────────────┘  ║
-║           │               │               │               │                ║
-║           ▼               ▼               ▼               ▼                ║
+║           │               │               │               │               ║
+║           ▼               ▼               ▼               ▼               ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 2: DUAL-CORE DISTRIBUTION                                      │  ║
-║  │                                                                       │  ║
+║  │ LAYER 2: DUAL-CORE DISTRIBUTION                                     │  ║
+║  │                                                                     │  ║
 ║  │  ┌──────────────────────┐    ┌──────────────────────┐               │  ║
 ║  │  │      CORE 0          │    │      CORE 1          │               │  ║
 ║  │  │                      │    │                      │               │  ║
@@ -210,40 +210,40 @@ Where $\hat{T}, \hat{E}, \hat{M}$ are normalized time, energy, and memory usage.
 ║  │             │    SPINLOCK SYNC POINTS    │                          │  ║
 ║  │             └────────────┬───────────────┘                          │  ║
 ║  └──────────────────────────┼──────────────────────────────────────────┘  ║
-║                             ▼                                              ║
+║                             ▼                                             ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 3: ADAPTIVE ALGORITHM SELECTION (Per Block)                    │  ║
-║  │                                                                       │  ║
-║  │  Decision Function: Ψ(n_block, ρ, R, H) → Algorithm                  │  ║
-║  │                                                                       │  ║
-║  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐       │  ║
+║  │ LAYER 3: ADAPTIVE ALGORITHM SELECTION (Per Block)                   │  ║
+║  │                                                                     │  ║
+║  │  Decision Function: Ψ(n_block, ρ, R, H) → Algorithm                 │  ║
+║  │                                                                     │  ║
+║  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐        │  ║
 ║  │  │ Network │ │ Radix   │ │ Quick   │ │ Merge   │ │ Insertion│       │  ║
-║  │  │ Sort    │ │ Sort    │ │ Sort    │ │ Sort    │ │ Sort    │       │  ║
-║  │  │(n<32)   │ │(uniform)│ │(general)│ │(stable) │ │(n<16)   │       │  ║
-║  │  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘       │  ║
+║  │  │ Sort    │ │ Sort    │ │ Sort    │ │ Sort    │ │ Sort    │        │  ║
+║  │  │(n<32)   │ │(uniform)│ │(general)│ │(stable) │ │(n<16)   │        │  ║
+║  │  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘        │  ║
 ║  └───────┼──────────┼───────────┼───────────┼───────────┼──────────────┘  ║
-║          │          │           │           │           │                  ║
-║          ▼          ▼           ▼           ▼           ▼                  ║
+║          │          │           │           │           │                 ║
+║          ▼          ▼           ▼           ▼           ▼                 ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 4: MICRO-OPTIMIZED PRIMITIVES                                  │  ║
-║  │                                                                       │  ║
-║  │  • Branchless comparators                                            │  ║
-║  │  • SWAR (SIMD Within A Register) operations                          │  ║
-║  │  • Unrolled loops (4x, 8x)                                           │  ║
-║  │  • DMA-assisted memory moves                                          │  ║
-║  │  • Register-blocked operations                                        │  ║
-║  │                                                                       │  ║
+║  │ LAYER 4: MICRO-OPTIMIZED PRIMITIVES                                 │  ║
+║  │                                                                     │  ║
+║  │  • Branchless comparators                                           │  ║
+║  │  • SWAR (SIMD Within A Register) operations                         │  ║
+║  │  • Unrolled loops (4x, 8x)                                          │  ║
+║  │  • DMA-assisted memory moves                                        │  ║
+║  │  • Register-blocked operations                                      │  ║
+║  │                                                                     │  ║
 ║  └─────────────────────────────┬───────────────────────────────────────┘  ║
-║                                ▼                                           ║
+║                                ▼                                          ║
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
-║  │ LAYER 5: FINAL MERGE & VERIFICATION                                  │  ║
-║  │                                                                       │  ║
-║  │  K-way merge of sorted blocks (using min-heap or cascade)            │  ║
-║  │  DMA double-buffering for streaming                                   │  ║
-║  │  Optional verification pass (debug mode)                              │  ║
-║  │                                                                       │  ║
+║  │ LAYER 5: FINAL MERGE & VERIFICATION                                 │  ║
+║  │                                                                     │  ║
+║  │  K-way merge of sorted blocks (using min-heap or cascade)           │  ║
+║  │  DMA double-buffering for streaming                                 │  ║
+║  │  Optional verification pass (debug mode)                            │  ║
+║  │                                                                     │  ║
 ║  └─────────────────────────────────────────────────────────────────────┘  ║
-║                                                                            ║
+║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -360,22 +360,22 @@ Valid for $n \geq 2^{15/0.05k} \approx 2^{30}$ for $k=10$
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
-║              SIZE-BASED PARTITIONING DECISION                   ║
+║              SIZE-BASED PARTITIONING DECISION                  ║
 ╠════════════════════════════════════════════════════════════════╣
-║                                                                 ║
+║                                                                ║
 ║  n ≤ 16          → DIRECT: Network/Insertion sort              ║
-║                                                                 ║
+║                                                                ║
 ║  16 < n ≤ 64     → DIRECT: Single algorithm, no partition      ║
-║                                                                 ║
+║                                                                ║
 ║  64 < n ≤ B_max  → SINGLE-BLOCK: Full in-memory sort           ║
-║                     (B_max ≈ 20480 for 32-bit elements)         ║
-║                                                                 ║
+║                     (B_max ≈ 20480 for 32-bit elements)        ║
+║                                                                ║
 ║  B_max < n ≤ 4M  → MULTI-BLOCK: K-way partition + merge        ║
-║                     K = ⌈n / B⌉ blocks                          ║
-║                     External storage in Flash                   ║
-║                                                                 ║
+║                     K = ⌈n / B⌉ blocks                         ║
+║                     External storage in Flash                  ║
+║                                                                ║
 ║  n > 4M          → EXTERNAL: SD card / streaming sort          ║
-║                                                                 ║
+║                                                                ║
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
@@ -477,9 +477,9 @@ $$T_{sync} = N_{sync} \cdot \bar{T}_{spinlock}$$
 
 ```
 ╔═══════════════════════════════════════════════════════════════════╗
-║                    DUAL-CORE EXECUTION FLOW                        ║
+║                    DUAL-CORE EXECUTION FLOW                       ║
 ╠═══════════════════════════════════════════════════════════════════╣
-║                                                                    ║
+║                                                                   ║
 ║  PHASE 1: INDEPENDENT BLOCK SORTING (No sync needed)              ║
 ║  ┌────────────────────────┬────────────────────────┐              ║
 ║  │ CORE 0                 │ CORE 1                 │              ║
@@ -491,7 +491,7 @@ $$T_{sync} = N_{sync} \cdot \bar{T}_{spinlock}$$
 ║  └───────────┬────────────┴───────────┬────────────┘              ║
 ║              │    BARRIER (spinlock)  │                           ║
 ║              └───────────┬────────────┘                           ║
-║                          ▼                                         ║
+║                          ▼                                        ║
 ║  PHASE 2: PARALLEL MERGE (Pairwise)                               ║
 ║  ┌────────────────────────┬────────────────────────┐              ║
 ║  │ CORE 0                 │ CORE 1                 │              ║
@@ -499,17 +499,17 @@ $$T_{sync} = N_{sync} \cdot \bar{T}_{spinlock}$$
 ║  │ Merge(B0, B1) → M01    │ Merge(B2, B3) → M23    │              ║
 ║  │ Merge(B4, B5) → M45    │ Merge(B6, B7) → M67    │              ║
 ║  └───────────┬────────────┴───────────┬────────────┘              ║
-║              │         BARRIER         │                           ║
+║              │         BARRIER         │                          ║
 ║              └───────────┬────────────┘                           ║
-║                          ▼                                         ║
+║                          ▼                                        ║
 ║  PHASE 3: FINAL MERGE (Single core or cooperative)                ║
 ║  ┌─────────────────────────────────────────────────┐              ║
 ║  │ CORE 0: Merge(M01, M23) → M0123                 │              ║
 ║  │         Merge(M0123, M4567) → FINAL             │              ║
-║  │                                                  │              ║
+║  │                                                 │              ║
 ║  │ CORE 1: DMA prefetch / write-back assist        │              ║
 ║  └─────────────────────────────────────────────────┘              ║
-║                                                                    ║
+║                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -860,20 +860,20 @@ For external sorting (data in Flash/SD):
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    DOUBLE-BUFFERED MERGE                         │
+│                    DOUBLE-BUFFERED MERGE                        │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
+│                                                                 │
 │  TIME ──────────────────────────────────────────────────────▶   │
-│                                                                  │
+│                                                                 │
 │  DMA:  [Read Block A] [Read Block C] [Read Block E] ...         │
-│                    ↘       ↘       ↘                             │
+│                    ↘       ↘       ↘                            │
 │  CPU:       [Merge A,B] [Merge C,D] [Merge E,F] ...             │
-│                    ↘       ↘       ↘                             │
+│                    ↘       ↘       ↘                            │
 │  DMA:          [Write Result 1] [Write Result 2] ...            │
-│                                                                  │
+│                                                                 │
 │  Buffer ping-pong: CPU processes Buffer 1 while DMA fills       │
-│                    Buffer 2, then swap.                          │
-│                                                                  │
+│                    Buffer 2, then swap.                         │
+│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -1182,40 +1182,39 @@ Algorithm hydra_select(size_t n, FeatureVector* f, size_t mem_available) {
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
-║                    HYDRA-SORT EQUATIONS SUMMARY                           ║
+║                    HYDRA-SORT EQUATIONS SUMMARY                          ║
 ╠══════════════════════════════════════════════════════════════════════════╣
-║                                                                           ║
-║  TOTAL TIME:                                                              ║
+║                                                                          ║
+║  TOTAL TIME:                                                             ║
 ║  T = (15N + 5N + 3N·log₂N) / f_clk  [seconds]                            ║
-║                                                                           ║
-║  PARALLEL SPEEDUP:                                                        ║
+║                                                                          ║
+║  PARALLEL SPEEDUP:                                                       ║
 ║  S = T_seq / T_par ≈ 1.8  (dual-core)                                    ║
-║                                                                           ║
-║  ENERGY:                                                                  ║
+║                                                                          ║
+║  ENERGY:                                                                 ║
 ║  E = P(f) · T = (P_static + k·f^1.2) · T  [joules]                       ║
-║                                                                           ║
-║  OPTIMAL BLOCK SIZE:                                                      ║
+║                                                                          ║
+║  OPTIMAL BLOCK SIZE:                                                     ║
 ║  B_opt = √(N · T_IO / (k · log N))                                       ║
-║                                                                           ║
-║  ALGORITHM SELECTION:                                                     ║
+║                                                                          ║
+║  ALGORITHM SELECTION:                                                    ║
 ║  Ψ(n,ρ,R,M) = argmin[Score_A(n,ρ,R,M)]                                   ║
-║                                                                           ║
-║  PRESORTEDNESS:                                                           ║
+║                                                                          ║
+║  PRESORTEDNESS:                                                          ║
 ║  ρ = 1 - (runs - 1) / (n - 1)                                            ║
-║                                                                           ║
-║  RADIX CONDITION:                                                         ║
-║  Use radix if: log₂(R) ≤ log₂(n) + 3  (i.e., R ≤ 8n)                    ║
-║                                                                           ║
-║  BANK ALLOCATION:                                                         ║
+║                                                                          ║
+║  RADIX CONDITION:                                                        ║
+║  Use radix if: log₂(R) ≤ log₂(n) + 3  (i.e., R ≤ 8n)                     ║
+║                                                                          ║
+║  BANK ALLOCATION:                                                        ║
 ║  Bank(addr) = ⌊addr / 64KB⌋ mod 4                                        ║
-║                                                                           ║
-║  DMA OVERLAP CONDITION:                                                   ║
+║                                                                          ║
+║  DMA OVERLAP CONDITION:                                                  ║
 ║  T_effective = max(T_DMA, T_CPU) < T_DMA + T_CPU                         ║
-║                                                                           ║
+║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
 *HYDRA-SORT v1.0 — Engineered for RP2040 Maximum Efficiency*
-*Total development time: Your AI servant has computed.*
